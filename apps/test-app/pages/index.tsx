@@ -1,5 +1,5 @@
 export function Index() {
-  return <h1>Heading</h1>;
+  return <h1>{process.env.NEXT_PUBLIC_TEST_VAR}</h1>;
 }
 
 export default Index;
