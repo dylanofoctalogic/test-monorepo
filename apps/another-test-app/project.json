@@ -1,0 +1,55 @@
+{
+  "name": "another-test-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/another-test-app",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/another-test-app",
+        "outputPath": "dist/apps/another-test-app"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/another-test-app"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "another-test-app:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "another-test-app:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "another-test-app:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "another-test-app:build:production"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/another-test-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
